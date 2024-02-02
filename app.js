@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+const hostname = process.env.HOST_NAME;
 
 
 app.use(express.static("public"));
@@ -30,8 +31,8 @@ db.once("open", () => {
   console.log("Connected to MongoDB successfully!");
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port, hostname, () => {
+  console.log(`Hi ${process.env.AUTHOR}. Server is running on port ${port}`);
 });
 const Student = require("./models/Student");
 const User = require("./models/User");
